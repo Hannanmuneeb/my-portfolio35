@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ProMaster Ultimate Landing</title>
+
+<style>
+/* ===== GLOBAL ===== */
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
+html{scroll-behavior:smooth;}
+body{background:#f5f7fa;color:#333;transition:0.3s;}
+
+/* ===== DARK MODE ===== */
+body.dark{background:#1a1a1a;color:#f0f0f0;}
+body.dark .navbar{background:#111;}
+body.dark .hero{background:linear-gradient(135deg,#ff4a57,#ff7b5f);}
+body.dark .feature-card,.body.dark .price-card{background:#222;color:#f0f0f0;}
+body.dark .testimonial{background:#ff4a57;color:white;}
+body.dark footer{background:#111;color:#f0f0f0;}
+
+/* ===== NAVBAR ===== */
+.navbar{display:flex;justify-content:space-between;align-items:center;padding:20px 60px;background:#fff;box-shadow:0 2px 12px rgba(0,0,0,0.08);position:sticky;top:0;z-index:100;transition:0.3s;}
+.logo{font-size:26px;font-weight:bold;color:#ff4a57;}
+.navbar nav a{margin-left:25px;text-decoration:none;color:#333;font-weight:500;position:relative;transition:0.3s;}
+.navbar nav a::after{content:"";position:absolute;width:0;height:2px;background:#ff4a57;left:0;bottom:-5px;transition:0.3s;}
+.navbar nav a:hover::after{width:100%;}
+
+/* ===== HAMBURGER ===== */
+.menu-toggle{display:none;width:30px;height:22px;cursor:pointer;position:relative;}
+.menu-toggle span{background:#333;height:3px;width:100%;position:absolute;left:0;transition:0.4s ease;}
+.menu-toggle span:nth-child(1){top:0;}
+.menu-toggle span:nth-child(2){top:9px;}
+.menu-toggle span:nth-child(3){top:18px;}
+.menu-toggle.active span:nth-child(1){transform:rotate(45deg);top:9px;}
+.menu-toggle.active span:nth-child(2){opacity:0;}
+.menu-toggle.active span:nth-child(3){transform:rotate(-45deg);top:9px;}
+
+/* ===== HERO ===== */
+.hero{height:95vh;background:linear-gradient(135deg,#ff4a57,#ff7b5f);color:white;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:20px;transition:0.3s;}
+.hero h1{font-size:50px;line-height:1.2;}
+.hero p{margin-top:15px;font-size:18px;max-width:650px;}
+.hero .btn{margin-top:30px;padding:16px 40px;background:white;color:#ff4a57;border-radius:30px;text-decoration:none;font-weight:bold;transition:0.3s;}
+.hero .btn:hover{background:#ff4a57;color:white;transform:translateY(-3px);}
+
+/* ===== SECTIONS ===== */
+section{padding:90px 60px;text-align:center;transition:0.3s;}
+section h2{font-size:34px;margin-bottom:15px;}
+section p{max-width:700px;margin:auto;color:#555;line-height:1.6;transition:0.3s;}
+
+/* ===== FEATURES ===== */
+.features .grid,.pricing .grid,.testimonials .grid{display:flex;justify-content:center;gap:25px;margin-top:50px;flex-wrap:wrap;}
+.feature-card,.price-card,.testimonial{background:white;padding:40px;border-radius:14px;box-shadow:0 5px 25px rgba(0,0,0,0.08);width:300px;transition:0.3s;}
+.feature-card:hover,.price-card:hover,.testimonial:hover{transform:translateY(-10px);box-shadow:0 20px 40px rgba(0,0,0,0.12);}
+.feature-card h3,.price-card h3{color:#ff4a57;margin-bottom:12px;}
+
+/* ===== PRICING ===== */
+.price-card{border-top:4px solid #ff4a57;}
+.price-card .price{font-size:32px;font-weight:bold;margin:15px 0;}
+
+/* ===== TESTIMONIALS ===== */
+.testimonial{background:#ff4a57;color:white;}
+.testimonial p{margin-top:10px;font-style:italic;}
+
+/* ===== CONTACT ===== */
+.contact form{max-width:500px;margin:auto;}
+.contact input,.contact textarea{width:100%;padding:12px;margin-bottom:15px;border-radius:8px;border:1px solid #ccc;}
+
+/* ===== DARK MODE BUTTON ===== */
+.dark-toggle{position:fixed;bottom:20px;right:20px;background:#ff4a57;color:white;padding:12px 20px;border:none;border-radius:30px;cursor:pointer;box-shadow:0 5px 15px rgba(0,0,0,0.2);z-index:1000;transition:0.3s;}
+.dark-toggle:hover{background:#ff7b5f;}
+
+/* ===== FOOTER ===== */
+footer{background:#ff4a57;color:white;text-align:center;padding:18px;font-size:14px;letter-spacing:0.5px;transition:0.3s;}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:900px){section{padding:70px 30px;}}
+@media(max-width:600px){
+.menu-toggle{display:block;}
+.navbar{padding:20px 30px;}
+.navbar nav{position:absolute;top:70px;right:20px;background:white;width:220px;padding:15px;border-radius:12px;box-shadow:0 10px 25px rgba(0,0,0,0.15);display:flex;flex-direction:column;opacity:0;transform:translateY(-20px);pointer-events:none;transition:0.4s;}
+.navbar nav.active{opacity:1;transform:translateY(0);pointer-events:auto;}
+.navbar nav a{margin:10px 0;}
+.hero h1{font-size:28px;}
+.features .grid,.pricing .grid,.testimonials .grid{flex-direction:column;align-items:center;}
+}
+</style>
+</head>
+
+<body>
+
+<header class="navbar">
+  <div class="logo">ProMaster</div>
+  <div class="menu-toggle" id="menu-toggle"><span></span><span></span><span></span></div>
+  <nav id="nav-menu">
+    <a href="#home">Home</a>
+    <a href="#features">Features</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#testimonials">Testimonials</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section class="hero" id="home">
+  <h1>Launch Products Like a Pro</h1>
+  <p>Professional, fully responsive landing page with modern UI, dark mode, and smooth animations — portfolio-ready.</p>
+  <a href="#contact" class="btn">Get Started</a>
+</section>
+
+<section class="features" id="features">
+  <h2>Core Features</h2>
+  <p>Everything your project needs to impress users and clients.</p>
+  <div class="grid">
+    <div class="feature-card"><h3>Responsive Design</h3>Looks perfect on all devices.</div>
+    <div class="feature-card"><h3>Modern UI/UX</h3>Clean, intuitive, and user-friendly.</div>
+    <div class="feature-card"><h3>High Performance</h3>Fast loading, smooth animations.</div>
+  </div>
+</section>
+
+<section class="pricing" id="pricing">
+  <h2>Pricing Plans</h2>
+  <p>Flexible options for startups and professionals.</p>
+  <div class="grid">
+    <div class="price-card"><h3>Basic</h3><div class="price">$49</div><p>Single-page landing page</p></div>
+    <div class="price-card"><h3>Standard</h3><div class="price">$99</div><p>Multi-section landing page</p></div>
+    <div class="price-card"><h3>Premium</h3><div class="price">$149</div><p>Complete landing + animations + SEO</p></div>
+  </div>
+</section>
+
+<section class="testimonials" id="testimonials">
+  <h2>What Clients Say</h2>
+  <p>Trusted by professionals worldwide.</p>
+  <div class="grid">
+    <div class="testimonial"><p>"Incredible landing page, boosted our user signups!" – Client A</p></div>
+    <div class="testimonial"><p>"Highly professional and responsive design." – Client B</p></div>
+    <div class="testimonial"><p>"Clean, modern, and perfectly executed." – Client C</p></div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <h2>Contact Us</h2>
+  <p>Start your project today and impress clients!</p>
+  <form>
+    <input type="text" placeholder="Your Name">
+    <input type="email" placeholder="Your Email">
+    <textarea placeholder="Your Message"></textarea>
+    <button class="btn">Send Message</button>
+  </form>
+</section>
+
+<footer>
+  Ultimate Landing Page for Fiverr Portfolio
+</footer>
+
+<button class="dark-toggle" id="dark-toggle">Dark Mode</button>
+
+<script>
+/* ===== HAMBURGER MENU ===== */
+const toggle=document.getElementById("menu-toggle");
+const nav=document.getElementById("nav-menu");
+const links=nav.querySelectorAll("a");
+toggle.addEventListener("click",()=>{toggle.classList.toggle("active");nav.classList.toggle("active");});
+links.forEach(link=>{link.addEventListener("click",()=>{toggle.classList.remove("active");nav.classList.remove("active");});});
+
+/* ===== DARK MODE TOGGLE ===== */
+const darkBtn=document.getElementById("dark-toggle");
+darkBtn.addEventListener("click",()=>{document.body.classList.toggle("dark");});
+
+/* ===== SCROLL ANIMATIONS ===== */
+const sections=document.querySelectorAll("section");
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){entry.target.style.opacity=1;entry.target.style.transform='translateY(0)';}
+    else{entry.target.style.opacity=0;entry.target.style.transform='translateY(50px)';}
+  });
+},{threshold:0.1});
+sections.forEach(section=>{section.style.opacity=0;section.style.transform='translateY(50px)';observer.observe(section);});
+</script>
+
+</body>
+</html>
+
